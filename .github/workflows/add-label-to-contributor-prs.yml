@@ -9,6 +9,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - uses: actions/github-script@v6
+        with:
+          script: |
+            console.log(JSON.stringify(context))
       - run: echo ${{ github.event.pull_request.author_association }}
       - uses: actions-ecosystem/action-add-labels@v1
         if: ${{ github.event.pull_request.author_association == 'CONTRIBUTOR' }}
